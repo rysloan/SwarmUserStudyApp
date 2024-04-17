@@ -2,7 +2,7 @@
 
 # dependencies
 /video-picker/node_modules
-/node_modules/node_modules
+/node-postgres/node_modules
 /video-picker/.pnp
 .pnp.js
 

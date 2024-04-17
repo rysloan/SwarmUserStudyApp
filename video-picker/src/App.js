@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactPlayer from "react-player"
 
 const images = require.context('./swarm_gifs', true);
@@ -15,15 +15,6 @@ function getRandomNumInList(size) {
 
 
 function App() {
-  //const [isClicked, setIsClicked] = useState("red solid 5px")
-  //const [isClicked2, setIsClicked2] = useState("red solid 5px")
-  function gifToUse(size) {
-    console.log(size)
-    let index = getRandomNumInList(size)
-    let temp = tempvids[index]
-    tempvids.splice(index, 1)
-    return temp
-  }
 
   function getXGifs(count) {
     let index = 0;
@@ -32,14 +23,14 @@ function App() {
       console.log(tempvids.length)
       index = getRandomNumInList(tempvids.length)
       arr.push(tempvids[index])
-      tempvids.splice(index, 1);
+      // tempvids.splice(index, 1);
     }
     return arr;
   }
   
   let unpicked = "grey solid 7px"
   let picked = "green solid 7px"
-  const [selectedScenes, setSelectedScenes] = useState([])
+  // const [selectedScenes, setSelectedScenes] = useState([])
   const [sceneSelected, setSceneSelected] = useState(false)
   const [start, setStart] = useState(true)
   const [firstGif, setFirstGif] = useState([])
@@ -60,20 +51,98 @@ function App() {
           onClick={() => {
             if (info[1] === unpicked && !sceneSelected) {
               props.handler([info[0], picked])
-              setSelectedScenes([...selectedScenes, info[0]])
+              // setSelectedScenes([...selectedScenes, info[0]])
               setSceneSelected(true)
             }
             else if(info[1] === picked && sceneSelected) {
               props.handler([info[0], unpicked])
-              let temp = selectedScenes
-              temp.pop()
-              setSelectedScenes(temp)
+              // let temp = selectedScenes
+              // temp.pop()
+              // setSelectedScenes(temp)
               setSceneSelected(false)
             }
           }}
       />
     )
   }
+
+  const [behaviorData, setBehaviorData] = useState(false);
+  const [prolificId, setProlificId] = useState();
+
+  function getProlificId() {
+    let id = prompt('Enter your prolific ID');
+    setProlificId(id);
+  }
+
+  function getBehaviorData() {
+    fetch('http://localhost:3001')
+      .then(response => {
+        return response.text();
+      })
+      .then(data => {
+        setBehaviorData(data);
+      });
+  }
+
+  function createBehaviorData(gif1, gif2, gif3, gifSelected) {
+    // let name = prompt('Enter merchant name');
+    // let email = prompt('Enter merchant email');
+    let selected = gifSelected
+    fetch('http://localhost:3001/behaviordata', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({prolificId, gif1, gif2, gif3, selected}),
+    })
+      .then(response => {
+        console.log(response);
+        return response.text();
+      })
+      .then(data => {
+        console.log(data);
+        alert(data);
+        getBehaviorData();
+      });
+  }
+
+  // function deleteMerchant() {
+  //   let id = prompt('Enter merchant id');
+  //   fetch(`http://localhost:3001/merchants/${id}`, {
+  //     method: 'DELETE',
+  //   })
+  //     .then(response => {
+  //       return response.text();
+  //     })
+  //     .then(data => {
+  //       alert(data);
+  //       getMerchant();
+  //     });
+  // }
+
+  // function updateMerchant() {
+  //   let id = prompt('Enter merchant id');
+  //   let name = prompt('Enter new merchant name');
+  //   let email = prompt('Enter new merchant email');
+  //   fetch(`http://localhost:3001/merchants/${id}`, {
+  //     method: 'PUT',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({name, email}),
+  //   })
+  //     .then(response => {
+  //       return response.text();
+  //     })
+  //     .then(data => {
+  //       alert(data);
+  //       getMerchant();
+  //     });
+  // }
+
+  useEffect(() => {
+    getBehaviorData();
+  }, []);
 
 
   return (
@@ -90,21 +159,47 @@ function App() {
       <div>
         <button 
           onClick={() => {
-            //console.log(firstGif[0])
-            if (start)
+            // Change Button From START -> NEXT
+            if (start) {
               setStart(false)
+              getProlificId()
+            }
+            else {
+              // Save data to database
+              let selected = -1;
+              if (firstGif[1] === picked)
+                selected = 1
+              else if (secondGif[1] === picked)
+                selected = 2
+              else if (thirdGif[1] === picked)
+                selected = 3
+
+              console.log(prolificId + " " + firstGif[0] + " " + secondGif[0] + " " + thirdGif[0] + " " + selected)
+              createBehaviorData(firstGif[0], secondGif[0], thirdGif[0], selected)
+            }
+
+            // Repopulate gifs with new gifs
             let temp = getXGifs(3)
             setFirstGif([temp[0], unpicked])
             setSecondGif([temp[1], unpicked])
             setThirdGif([temp[2], unpicked])
+
+            // Reset Scene Selected
             setSceneSelected(false)
-            console.log(selectedScenes)
+            // console.log(selectedScenes)
           }}
           style={{width: '125px', height: '50px', margin: '10px 10px auto'}}
         >
           {start ? "START" : "NEXT"}
         </button>
       </div>
+      {behaviorData ? behaviorData : 'There is no merchant data available'}
+      {/* <br />
+      <button onClick={createMerchant}>Add merchant</button>
+      <br />
+      <button onClick={deleteMerchant}>Delete merchant</button>
+      <br />
+      <button onClick={updateMerchant}>Update merchant</button> */}
     </div>
   );
 }
