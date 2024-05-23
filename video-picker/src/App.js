@@ -71,7 +71,8 @@ function App() {
 
   function getProlificId() {
     let id = prompt('Enter your prolific ID');
-    setProlificId(id);
+    let num = parseInt(id);
+    setProlificId(num);
   }
 
   function getBehaviorData() {
@@ -87,13 +88,15 @@ function App() {
   function createBehaviorData(gif1, gif2, gif3, gifSelected) {
     // let name = prompt('Enter merchant name');
     // let email = prompt('Enter merchant email');
+    console.log(prolificId)
     let selected = gifSelected
+    let prolificid = prolificId
     fetch('http://localhost:3001/behaviordata', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({prolificId, gif1, gif2, gif3, selected}),
+      body: JSON.stringify({prolificid, gif1, gif2, gif3, selected}),
     })
       .then(response => {
         console.log(response);
@@ -174,8 +177,8 @@ function App() {
               else if (thirdGif[1] === picked)
                 selected = 3
 
-              console.log(prolificId + " " + firstGif[0] + " " + secondGif[0] + " " + thirdGif[0] + " " + selected)
               createBehaviorData(firstGif[0], secondGif[0], thirdGif[0], selected)
+              //createBehaviorData('test1', 'test2', 'test3', 1)
             }
 
             // Repopulate gifs with new gifs

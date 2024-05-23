@@ -30,11 +30,11 @@ const getBehaviorData = async () => {
   //create a new merchant record in the databsse
   const createBehaviorData = (body) => {
     return new Promise(function (resolve, reject) {
-      const { prolificID, gif1, gif2, gif3, selected } = body;
+      const { prolificid, gif1, gif2, gif3, selected } = body;
       console.log(body)
       pool.query(
-        "INSERT INTO behaviordata (prolificID, gif1, gif2, gif3, selected) VALUES ($1, $2, $3, $4, $5) RETURNING *",
-        [prolificID, gif1, gif2, gif3, selected],
+        "INSERT INTO behaviordata (prolificid, gif1, gif2, gif3, selected) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+        [prolificid, gif1, gif2, gif3, selected],
         (error, results) => {
           if (error) {
             reject(error);
