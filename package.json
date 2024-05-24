@@ -1,17 +1,13 @@
 {
-  "name": "postgres",
+  "name": "swarmuserstudyapp",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node index.js && npm install"
+    "start": "cd video-picker && cd src && node App.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.19.2",
-    "pg": "^8.11.5"
-  }
+  "license": "ISC"
 }
