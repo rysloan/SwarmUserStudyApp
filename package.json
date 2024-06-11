@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd video-picker && npm start"
+    "frontend": "cd video-picker && npm start",
+    "api": "cd node-postgres && node index.js",
+    "dev": "concurrently --kill-others-on-fail \"npm run api\" \"npm run frontend\"",
+    "heroku-postbuild": "cd video-picker && npm install && npm run build"
   },
   "keywords": ["heroku"],
   "author": "",
@@ -20,7 +22,9 @@
     "react-dom": "^18.2.0",
     "react-player": "^2.15.1",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "express": "^4.19.2",
+    "pg": "^8.11.5"
   },
   "engines": {
     "node": "20.11.0"
