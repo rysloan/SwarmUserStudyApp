@@ -76,7 +76,7 @@ function App() {
   }
 
   function getBehaviorData() {
-    fetch('http://localhost:3001')
+    fetch('/') // NO LONGER FETCHING FROM localhost
       .then(response => {
         return response.text();
       })
@@ -91,7 +91,7 @@ function App() {
     console.log(prolificId)
     let selected = gifSelected
     let prolificid = prolificId
-    fetch('http://localhost:3001/behaviordata', {
+    fetch('/behaviordata', { // REMOVE EVERYTHING BEFORE /behaviordata
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

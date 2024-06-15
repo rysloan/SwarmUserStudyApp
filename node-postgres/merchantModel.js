@@ -1,11 +1,26 @@
 const Pool = require('pg').Pool
+// const pool = new Pool({
+//   user: 'ryan_sloan',
+//   host: 'localhost',
+//   database: 'first_test_db',
+//   password: 'root',
+//   port: 5432,
+// });
 const pool = new Pool({
-  user: 'ryan_sloan',
-  host: 'localhost',
-  database: 'first_test_db',
-  password: 'root',
-  port: 5432,
+  connectionString: process.env.DATABASE_URL || 'postgresql://postgres:<your admin password>@localhost:5432/<your db name>',
+  ssl: process.env.DATABASE_URL ? true : false
 });
+
+// const { Client } = require('pg');
+
+// const client = new Client({
+//   connectionString: process.env.DATABASE_URL,
+//   ssl: {
+//     rejectUnauthorized: false
+//   }
+// });
+
+// client.connect();
 
 //get all merchants our database
 const getBehaviorData = async () => {
