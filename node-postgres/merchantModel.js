@@ -52,6 +52,7 @@ const getBehaviorData = async () => {
         [prolificid, gif1, gif2, gif3, selected],
         (error, results) => {
           if (error) {
+            console.log(error);
             reject(error);
           }
           if (results && results.rows) {
