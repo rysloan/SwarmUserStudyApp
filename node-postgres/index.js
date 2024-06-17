@@ -17,7 +17,7 @@ app.get('*', (req, res) => {
 app.use(express.json())
 app.use(function (req, res, next) {
   // Allow requests from this specific origin
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Origin', '*');
   // Allow the following HTTP methods
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
   // Allow the following headers in requests
