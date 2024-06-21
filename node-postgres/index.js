@@ -25,6 +25,8 @@ app.use(function (req, res, next) {
   next();
 });
 
+// instructs Node.js to bypass SSL/TLS certificate verification for outgoing HTTPS requests
+// can be risky
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 app.get('/', (req, res) => {
