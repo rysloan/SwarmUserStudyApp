@@ -154,7 +154,7 @@ function App() {
         Welcome to the Swarm Behavior Selector
       </h1>
       <h3>
-        Pick which behavior you think is unique when compared to the others
+        Below are 3 examples of robot swarms working together. Between the 3 which one stands out to you the most?
       </h3>
       <Gif gif={firstGif} handler={setFirstGif}/>
       <Gif gif={secondGif} handler={setSecondGif}/>
