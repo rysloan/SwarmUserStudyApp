@@ -1,0 +1,5 @@
+uid,prolificid,gif1,gif2,gif3,selected
+1,111,test,test2,test3,-1
+2,111,/static/media/1711488304.5317bec88ce7532ae677.gif,/static/media/1711488377.f57c3cda844bc0bf80d1.gif,/static/media/1711488356.660ed93d2aba5e86b754.gif,1
+3,111,/static/media/1711488051.33a99f42ad82f4a14f7a.gif,/static/media/1711488040.d09e1bec6704e96a3d4c.gif,/static/media/1711488356.660ed93d2aba5e86b754.gif,2
+4,,/static/media/1711488104.12ea7fe00d676911896d.gif,/static/media/1711488083.04cffe49e886f1d94230.gif,/static/media/1711488388.d86ab78277431608c9c9.gif,3
