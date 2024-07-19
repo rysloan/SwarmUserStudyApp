@@ -143,7 +143,7 @@ function App() {
         Welcome to the Swarm Behavior Selector
       </h1>
       <h3>
-        Below are 3 examples of robot swarms working together. Between the 3 which one stands out to you the most?
+        Below are 3 examples of robot swarms working together. Between the 3 which one stands out to you the most? HELLOOOOOOOOOOOO
       </h3>
       <Gif gif={firstGif} handler={setFirstGif}/>
       <Gif gif={secondGif} handler={setSecondGif}/>
