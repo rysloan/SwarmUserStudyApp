@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 
-const images = require.context('./swarm_gifs', true);
+const images = require.context('./SwarmVideos', true);
 const vids = images.keys().map((v) => images(v));
 const tempvids = vids
 
@@ -19,7 +19,6 @@ function App() {
     let index = 0;
     let arr = []
     for(let i = 0; i < count; i++) {
-      console.log(tempvids.length)
       index = getRandomNumInList(tempvids.length)
       arr.push(tempvids[index])
     }
@@ -60,7 +59,6 @@ function App() {
     )
   }
 
-  //const [behaviorData, setBehaviorData] = useState(false);
   const [prolificId, setProlificId] = useState();
 
   function getProlificId() {
@@ -68,16 +66,6 @@ function App() {
     let num = parseInt(id);
     setProlificId(num);
   }
-
-  // function getBehaviorData() {
-  //   // fetch('/')
-  //   //   .then(response => {
-  //   //     return response.text();
-  //   //   });
-  //     // .then(data => {
-  //     //   setBehaviorData(data);
-  //     // });
-  // }
 
   function createBehaviorData(gif1, gif2, gif3, gifSelected) {
     let selected = gifSelected
@@ -92,50 +80,7 @@ function App() {
       .then(response => {
         return response.text();
       });
-      // .then(data => {
-      //   alert(data);
-      //   getBehaviorData();
-      // });
   }
-
-  // function deleteMerchant() {
-  //   let id = prompt('Enter merchant id');
-  //   fetch(`http://localhost:3001/merchants/${id}`, {
-  //     method: 'DELETE',
-  //   })
-  //     .then(response => {
-  //       return response.text();
-  //     })
-  //     .then(data => {
-  //       alert(data);
-  //       getMerchant();
-  //     });
-  // }
-
-  // function updateMerchant() {
-  //   let id = prompt('Enter merchant id');
-  //   let name = prompt('Enter new merchant name');
-  //   let email = prompt('Enter new merchant email');
-  //   fetch(`http://localhost:3001/merchants/${id}`, {
-  //     method: 'PUT',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({name, email}),
-  //   })
-  //     .then(response => {
-  //       return response.text();
-  //     })
-  //     .then(data => {
-  //       alert(data);
-  //       getMerchant();
-  //     });
-  // }
-
-  // useEffect(() => {
-  //   getBehaviorData();
-  // }, []);
-
 
   return (
     <div className="App">
@@ -166,7 +111,8 @@ function App() {
               else if (thirdGif[1] === picked)
                 selected = 3
 
-              createBehaviorData(firstGif[0], secondGif[0], thirdGif[0], selected)
+              let data = createBehaviorData(firstGif[0], secondGif[0], thirdGif[0], selected)
+              console.log(data)
             }
 
             // Repopulate gifs with new gifs
