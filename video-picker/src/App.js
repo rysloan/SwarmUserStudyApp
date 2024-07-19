@@ -19,7 +19,6 @@ function App() {
     let index = 0;
     let arr = []
     for(let i = 0; i < count; i++) {
-      console.log(tempvids.length)
       index = getRandomNumInList(tempvids.length)
       arr.push(tempvids[index])
     }
@@ -60,7 +59,6 @@ function App() {
     )
   }
 
-  //const [behaviorData, setBehaviorData] = useState(false);
   const [prolificId, setProlificId] = useState();
 
   function getProlificId() {
@@ -168,7 +166,8 @@ function App() {
               else if (thirdGif[1] === picked)
                 selected = 3
 
-              createBehaviorData(firstGif[0], secondGif[0], thirdGif[0], selected)
+              let data = createBehaviorData(firstGif[0], secondGif[0], thirdGif[0], selected)
+              console.log(data)
             }
 
             // Repopulate gifs with new gifs
