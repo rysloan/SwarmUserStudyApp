@@ -19,6 +19,7 @@ function App() {
     let index = 0;
     let arr = []
     for(let i = 0; i < count; i++) {
+      console.log(tempvids.length)
       index = getRandomNumInList(tempvids.length)
       arr.push(tempvids[index])
     }
@@ -59,6 +60,7 @@ function App() {
     )
   }
 
+  //const [behaviorData, setBehaviorData] = useState(false);
   const [prolificId, setProlificId] = useState();
 
   function getProlificId() {
@@ -67,15 +69,15 @@ function App() {
     setProlificId(num);
   }
 
-  function getBehaviorData() {
-    fetch('/')
-      .then(response => {
-        return response.text();
-      });
-      // .then(data => {
-      //   setBehaviorData(data);
-      // });
-  }
+  // function getBehaviorData() {
+  //   // fetch('/')
+  //   //   .then(response => {
+  //   //     return response.text();
+  //   //   });
+  //     // .then(data => {
+  //     //   setBehaviorData(data);
+  //     // });
+  // }
 
   function createBehaviorData(gif1, gif2, gif3, gifSelected) {
     let selected = gifSelected
@@ -88,14 +90,12 @@ function App() {
       body: JSON.stringify({prolificid, gif1, gif2, gif3, selected}),
     })
       .then(response => {
-        console.log(response);
         return response.text();
-      })
-      .then(data => {
-        console.log(data);
-        alert(data);
-        getBehaviorData();
       });
+      // .then(data => {
+      //   alert(data);
+      //   getBehaviorData();
+      // });
   }
 
   // function deleteMerchant() {
@@ -132,9 +132,9 @@ function App() {
   //     });
   // }
 
-  useEffect(() => {
-    getBehaviorData();
-  }, []);
+  // useEffect(() => {
+  //   getBehaviorData();
+  // }, []);
 
 
   return (
@@ -166,8 +166,7 @@ function App() {
               else if (thirdGif[1] === picked)
                 selected = 3
 
-              let data = createBehaviorData(firstGif[0], secondGif[0], thirdGif[0], selected)
-              console.log(data)
+              createBehaviorData(firstGif[0], secondGif[0], thirdGif[0], selected)
             }
 
             // Repopulate gifs with new gifs
