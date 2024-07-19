@@ -69,15 +69,15 @@ function App() {
     setProlificId(num);
   }
 
-  // function getBehaviorData() {
-  //   // fetch('/')
-  //   //   .then(response => {
-  //   //     return response.text();
-  //   //   });
-  //     // .then(data => {
-  //     //   setBehaviorData(data);
-  //     // });
-  // }
+  function getBehaviorData() {
+    fetch('/')
+      .then(response => {
+        return response.text();
+      });
+      // .then(data => {
+      //   setBehaviorData(data);
+      // });
+  }
 
   function createBehaviorData(gif1, gif2, gif3, gifSelected) {
     let selected = gifSelected
@@ -90,12 +90,14 @@ function App() {
       body: JSON.stringify({prolificid, gif1, gif2, gif3, selected}),
     })
       .then(response => {
+        console.log(response);
         return response.text();
+      })
+      .then(data => {
+        console.log(data);
+        alert(data);
+        getBehaviorData();
       });
-      // .then(data => {
-      //   alert(data);
-      //   getBehaviorData();
-      // });
   }
 
   // function deleteMerchant() {
@@ -132,9 +134,9 @@ function App() {
   //     });
   // }
 
-  // useEffect(() => {
-  //   getBehaviorData();
-  // }, []);
+  useEffect(() => {
+    getBehaviorData();
+  }, []);
 
 
   return (
