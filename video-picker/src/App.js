@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 
-const images = require.context('./SwarmVideos', true);
+const images = require.context('./swarm_gifs', true);
 const vids = images.keys().map((v) => images(v));
 const tempvids = vids
 
