@@ -33,10 +33,10 @@ app.get('/', (req, res) => {
   merchant_model.getBehaviorData()
   const pid = req.query.PROLIFIC_PID;
   const studyID = req.query.STUDY_ID;
-  const sessionID = req.query.SESSION_ID
+  const sessionID = req.query.SESSION_ID;
+  console.log(pid)
   .then(response => {
     res.status(200).send(response);
-    console.log(pid);
   })
   .catch(error => {
     res.status(500).send(error);
