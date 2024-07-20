@@ -28,6 +28,7 @@ app.use(function (req, res, next) {
 // instructs Node.js to bypass SSL/TLS certificate verification for outgoing HTTPS requests
 // can be risky
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+console.log("~~~~~~~~~~TESTING~~~~~~~~~~");
 
 app.get('/', (req, res) => {
   merchant_model.getBehaviorData()
