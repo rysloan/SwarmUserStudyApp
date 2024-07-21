@@ -139,7 +139,8 @@ function App() {
                 selected = 3
 
               createBehaviorData(firstGif[0], secondGif[0], thirdGif[0], selected)
-              setQueryCount(queryCount++);
+              let temp = queryCount + 1;
+              setQueryCount(temp);
               if (queryCount >= 10) {
                 setStart(true);
               }
