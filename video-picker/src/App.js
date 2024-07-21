@@ -36,6 +36,7 @@ function App() {
   const [firstGif, setFirstGif] = useState([])
   const [secondGif, setSecondGif] = useState([])
   const [thirdGif, setThirdGif] = useState([])
+  const [queryCount, setQueryCount] = useState(0)
   
   function Gif(props) {
     let info = props.gif
@@ -72,7 +73,7 @@ function App() {
     console.log(split);
     let id = "testID";
     if (split.length > 1) {
-      id = split[1].substring(13, 38);
+      id = split[1].substring(13, 37);
     }
     // let id = prompt('Enter your prolific ID');
     let num = parseInt(id);
@@ -108,45 +109,6 @@ function App() {
       // });
   }
 
-  // function deleteMerchant() {
-  //   let id = prompt('Enter merchant id');
-  //   fetch(`http://localhost:3001/merchants/${id}`, {
-  //     method: 'DELETE',
-  //   })
-  //     .then(response => {
-  //       return response.text();
-  //     })
-  //     .then(data => {
-  //       alert(data);
-  //       getMerchant();
-  //     });
-  // }
-
-  // function updateMerchant() {
-  //   let id = prompt('Enter merchant id');
-  //   let name = prompt('Enter new merchant name');
-  //   let email = prompt('Enter new merchant email');
-  //   fetch(`http://localhost:3001/merchants/${id}`, {
-  //     method: 'PUT',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({name, email}),
-  //   })
-  //     .then(response => {
-  //       return response.text();
-  //     })
-  //     .then(data => {
-  //       alert(data);
-  //       getMerchant();
-  //     });
-  // }
-
-  // useEffect(() => {
-  //   getBehaviorData();
-  // }, []);
-
-
   return (
     <div className="App">
       <h1>
@@ -177,6 +139,10 @@ function App() {
                 selected = 3
 
               createBehaviorData(firstGif[0], secondGif[0], thirdGif[0], selected)
+              setQueryCount(queryCount++);
+              if (queryCount >= 10) {
+                setStart(true);
+              }
             }
 
             // Repopulate gifs with new gifs
