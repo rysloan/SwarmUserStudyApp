@@ -37,6 +37,7 @@ function App() {
   const [secondGif, setSecondGif] = useState([])
   const [thirdGif, setThirdGif] = useState([])
   const [queryCount, setQueryCount] = useState(0)
+  const [finished, setFinished] = useState(false)
   
   function Gif(props) {
     let info = props.gif
@@ -141,8 +142,9 @@ function App() {
               createBehaviorData(firstGif[0], secondGif[0], thirdGif[0], selected)
               let temp = queryCount + 1;
               setQueryCount(temp);
-              if (queryCount >= 10) {
+              if (queryCount >= 9) {
                 setStart(true);
+                setFinished(true);
               }
             }
 
@@ -156,6 +158,7 @@ function App() {
             setSceneSelected(false)
           }}
           style={{width: '125px', height: '50px', margin: '10px 10px auto'}}
+          disabled={finished}
         >
           {start ? "START" : "NEXT"}
         </button>
