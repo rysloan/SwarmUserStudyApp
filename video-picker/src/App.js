@@ -68,6 +68,8 @@ function App() {
   function getProlificId() {
     const url = window.location.origin;
     const split = url.split('?');
+    console.log(url);
+    console.log(split);
     let id = "testID";
     if (split.length > 1) {
       id = split[1].substring(13, 38);
