@@ -19,13 +19,15 @@ function App() {
     let index = 0;
     let arr = []
     for(let i = 0; i < count; i++) {
-      console.log(tempvids.length)
       index = getRandomNumInList(tempvids.length)
       arr.push(tempvids[index])
     }
     return arr;
   }
   
+  
+
+
   let unpicked = "grey solid 7px"
   let picked = "green solid 7px"
 
@@ -64,9 +66,15 @@ function App() {
   const [prolificId, setProlificId] = useState();
 
   function getProlificId() {
-    let id = prompt('Enter your prolific ID');
+    const url = window.location.origin;
+    const split = url.split('?');
+    let id = "testID";
+    if (split.length > 1) {
+      id = split[1].substring(13, 38);
+    }
+    // let id = prompt('Enter your prolific ID');
     let num = parseInt(id);
-    setProlificId(num);
+    setProlificId(id);
   }
 
   // function getBehaviorData() {
