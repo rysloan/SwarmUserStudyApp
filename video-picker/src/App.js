@@ -145,6 +145,7 @@ function App() {
               if (queryCount >= 9) {
                 setStart(true);
                 setFinished(true);
+                alert()
               }
             }
 
@@ -163,6 +164,9 @@ function App() {
           {start ? "START" : "NEXT"}
         </button>
       </div>
+      <h1>
+        {finished ? "Completion Code: CK53M54P" : null}
+      </h1>
     </div>
   );
 }
