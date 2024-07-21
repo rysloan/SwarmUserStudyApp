@@ -66,7 +66,7 @@ function App() {
   const [prolificId, setProlificId] = useState();
 
   function getProlificId() {
-    const url = window.location.origin;
+    const url = window.location.href;
     const split = url.split('?');
     console.log(url);
     console.log(split);
