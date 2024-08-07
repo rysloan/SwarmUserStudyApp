@@ -27,13 +27,14 @@ function App() {
 
   let unpicked = "grey solid 7px"
   let picked = "green solid 7px"
+  const storedQueryCount = parseInt(JSON.parse(localStorage.getItem("queryCount")))
 
   const [sceneSelected, setSceneSelected] = useState(false)
   const [start, setStart] = useState(true)
   const [firstGif, setFirstGif] = useState([])
   const [secondGif, setSecondGif] = useState([])
   const [thirdGif, setThirdGif] = useState([])
-  //const [queryCount, setQueryCount] = useState(0)
+  const [queryCount, setQueryCount] = useState(storedQueryCount)
   const [finished, setFinished] = useState(false)
   
   function Gif(props) {
@@ -90,6 +91,18 @@ function App() {
       });
   }
 
+  useEffect(() => {
+
+    localStorage.setItem("queryCount", JSON.stringify(queryCount))
+
+    if (queryCount >= 10) {
+      alert("You have finished the study, Thank you! Completion Code: CK53M54P")
+      setStart(true);
+      setFinished(true);
+    }
+
+  }, [queryCount]) 
+
   return (
     <div className="App">
       <h1>
@@ -106,7 +119,7 @@ function App() {
           onClick={() => {
             // Change Button From START -> NEXT
             if (start) {
-              localStorage.setItem("queryCount", JSON.stringify(0))
+              // localStorage.setItem("queryCount", JSON.stringify(0))
               setStart(false)
               getProlificId()
             }
@@ -121,23 +134,23 @@ function App() {
                 selected = 3
 
               createBehaviorData(firstGif[0], secondGif[0], thirdGif[0], selected)
-              let queryCount = JSON.parse(localStorage.getItem("queryCount"))
-              let number = parseInt(queryCount)
-              let temp = number + 1
-              //let temp = queryCount + 1;
-              //setQueryCount(temp);
+              // let queryCount = JSON.parse(localStorage.getItem("queryCount"))
+              // let number = parseInt(queryCount)
+              // let temp = number + 1
+              let temp = queryCount + 1;
+              setQueryCount(temp);
               // if (queryCount >= 9) {
               //   alert("You have finished the study, Thank you! Completion Code: CK53M54P")
               //   setStart(true);
               //   setFinished(true);
               // }
-              localStorage.setItem("queryCount", JSON.stringify(temp))
-              console.log(temp)
-              if (temp >= 9) {
-                alert("You have finished the study, Thank you! Completion Code: CK53M54P")
-                setStart(true);
-                setFinished(true);
-              }
+              // localStorage.setItem("queryCount", JSON.stringify(temp))
+              // console.log(temp)
+              // if (temp >= 9) {
+              //   alert("You have finished the study, Thank you! Completion Code: CK53M54P")
+              //   setStart(true);
+              //   setFinished(true);
+              // }
             }
 
             // Repopulate gifs with new gifs
