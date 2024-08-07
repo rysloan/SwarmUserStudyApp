@@ -24,9 +24,6 @@ function App() {
     }
     return arr;
   }
-  
-  
-  localStorage.setItem("queryCount", JSON.stringify(0))
 
   let unpicked = "grey solid 7px"
   let picked = "green solid 7px"
