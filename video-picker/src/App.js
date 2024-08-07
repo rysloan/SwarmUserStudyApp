@@ -109,6 +109,7 @@ function App() {
           onClick={() => {
             // Change Button From START -> NEXT
             if (start) {
+              localStorage.setItem("queryCount", "0")
               setStart(false)
               getProlificId()
             }
@@ -125,7 +126,7 @@ function App() {
               createBehaviorData(firstGif[0], secondGif[0], thirdGif[0], selected)
               let queryCount = localStorage.getItem("queryCount")
               let number = parseInt(queryCount)
-              let temp = number + 1;
+              let temp = number + 1
               //let temp = queryCount + 1;
               //setQueryCount(temp);
               // if (queryCount >= 9) {
