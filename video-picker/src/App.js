@@ -26,7 +26,7 @@ function App() {
   }
   
   
-  localStorage.setItem("queryCount", "0")
+  localStorage.setItem("queryCount", JSON.stringify(0))
 
   let unpicked = "grey solid 7px"
   let picked = "green solid 7px"
@@ -109,7 +109,7 @@ function App() {
           onClick={() => {
             // Change Button From START -> NEXT
             if (start) {
-              localStorage.setItem("queryCount", "0")
+              localStorage.setItem("queryCount", JSON.stringify(0))
               setStart(false)
               getProlificId()
             }
@@ -124,7 +124,7 @@ function App() {
                 selected = 3
 
               createBehaviorData(firstGif[0], secondGif[0], thirdGif[0], selected)
-              let queryCount = localStorage.getItem("queryCount")
+              let queryCount = JSON.parse(localStorage.getItem("queryCount"))
               let number = parseInt(queryCount)
               let temp = number + 1
               //let temp = queryCount + 1;
@@ -134,7 +134,7 @@ function App() {
               //   setStart(true);
               //   setFinished(true);
               // }
-              localStorage.setItem("queryCount", temp.toString())
+              localStorage.setItem("queryCount", JSON.stringify(temp))
               console.log(temp)
               if (temp >= 9) {
                 alert("You have finished the study, Thank you! Completion Code: CK53M54P")
