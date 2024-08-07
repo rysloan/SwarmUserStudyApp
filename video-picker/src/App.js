@@ -26,7 +26,7 @@ function App() {
   }
   
   
-
+  localStorage.setItem("queryCount", "0")
 
   let unpicked = "grey solid 7px"
   let picked = "green solid 7px"
@@ -36,7 +36,7 @@ function App() {
   const [firstGif, setFirstGif] = useState([])
   const [secondGif, setSecondGif] = useState([])
   const [thirdGif, setThirdGif] = useState([])
-  const [queryCount, setQueryCount] = useState(0)
+  //const [queryCount, setQueryCount] = useState(0)
   const [finished, setFinished] = useState(false)
   
   function Gif(props) {
@@ -64,7 +64,6 @@ function App() {
     )
   }
 
-  //const [behaviorData, setBehaviorData] = useState(false);
   const [prolificId, setProlificId] = useState();
 
   function getProlificId() {
@@ -76,20 +75,8 @@ function App() {
     if (split.length > 1) {
       id = split[1].substring(13, 37);
     }
-    // let id = prompt('Enter your prolific ID');
-    let num = parseInt(id);
     setProlificId(id);
   }
-
-  // function getBehaviorData() {
-  //   // fetch('/')
-  //   //   .then(response => {
-  //   //     return response.text();
-  //   //   });
-  //     // .then(data => {
-  //     //   setBehaviorData(data);
-  //     // });
-  // }
 
   function createBehaviorData(gif1, gif2, gif3, gifSelected) {
     let selected = gifSelected
@@ -104,10 +91,6 @@ function App() {
       .then(response => {
         return response.text();
       });
-      // .then(data => {
-      //   alert(data);
-      //   getBehaviorData();
-      // });
   }
 
   return (
@@ -140,12 +123,22 @@ function App() {
                 selected = 3
 
               createBehaviorData(firstGif[0], secondGif[0], thirdGif[0], selected)
-              let temp = queryCount + 1;
-              setQueryCount(temp);
-              if (queryCount >= 9) {
+              let queryCount = localStorage.getItem("queryCount")
+              let number = parseInt(queryCount)
+              let temp = number + 1;
+              //let temp = queryCount + 1;
+              //setQueryCount(temp);
+              // if (queryCount >= 9) {
+              //   alert("You have finished the study, Thank you! Completion Code: CK53M54P")
+              //   setStart(true);
+              //   setFinished(true);
+              // }
+              localStorage.setItem("queryCount", temp.toString())
+              console.log(temp)
+              if (temp >= 9) {
+                alert("You have finished the study, Thank you! Completion Code: CK53M54P")
                 setStart(true);
                 setFinished(true);
-                alert()
               }
             }
 
