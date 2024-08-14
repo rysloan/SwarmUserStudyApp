@@ -134,7 +134,8 @@ function App() {
 
   let unpicked = "grey solid 7px"
   let picked = "green solid 7px"
-  const storedQueryCount = parseInt(JSON.parse(localStorage.getItem("queryCount")))
+  //const storedQueryCount = parseInt(JSON.parse(localStorage.getItem("queryCount")))
+  const storedQueryCount = 0
 
   const [sceneSelected, setSceneSelected] = useState(false)
   const [start, setStart] = useState(true)
@@ -148,7 +149,7 @@ function App() {
 
   useEffect(() => {
 
-    localStorage.setItem("queryCount", JSON.stringify(queryCount))
+    //localStorage.setItem("queryCount", JSON.stringify(queryCount))
 
     if (queryCount >= 50) {
       alert("You have finished the study, Thank you! Completion Code: CK53M54P")
