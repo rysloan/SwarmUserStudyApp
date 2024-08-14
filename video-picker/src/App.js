@@ -34,8 +34,8 @@ function App() {
     for(let i = 0; i < count; i++) {
       index = getRandomNumInList(tempvids.length)
 
-      let gifNumber = getGifNumber(tempvids[index]);
-      arr.push(gifNumber);
+      //let gifNumber = getGifNumber(tempvids[index]);
+      arr.push(tempvids[index]);
 
     }
     return arr;
@@ -46,16 +46,16 @@ function App() {
     let index = getRandomNumInList(tempvids.length)
     let arr = []
 
-    let gifNumber = getGifNumber(tempvids[index]);
-    arr.push(gifNumber)
+    //let gifNumber = getGifNumber(tempvids[index]);
+    arr.push(tempvids[index])
 
     let index2 = index;
     while (index2 === index) {
       index2 = getRandomNumInList(tempvids.length)
     }
 
-    gifNumber = getGifNumber(tempvids[index2]);
-    arr.push(gifNumber)
+    //gifNumber = getGifNumber(tempvids[index2]);
+    arr.push(tempvids[index2])
 
     return arr;
   }
@@ -193,13 +193,19 @@ function App() {
                   goodTester = true;
 
                 // TODO : Need to trucate the gif to just the number and not the entire path
-                createBehaviorData(firstGif[0], secondGif[0], thirdGif[0], selected)
+                let gitNumber1 = getGifNumber(firstGif[0])
+                let gitNumber2 = getGifNumber(secondGif[0])
+                let gitNumber3 = getGifNumber(thirdGif[0])
+                createBehaviorData(gitNumber1, gitNumber2, gitNumber3, selected)
                 let temp = queryCount + 1;
                 setQueryCount(temp);
                 setTestIdealAnswer(-1);
               }
               else {
-                createBehaviorData(firstGif[0], secondGif[0], thirdGif[0], selected)
+                let gitNumber1 = getGifNumber(firstGif[0])
+                let gitNumber2 = getGifNumber(secondGif[0])
+                let gitNumber3 = getGifNumber(thirdGif[0])
+                createBehaviorData(gitNumber1, gitNumber2, gitNumber3, selected)
                 let temp = queryCount + 1;
                 setQueryCount(temp);
               } 
