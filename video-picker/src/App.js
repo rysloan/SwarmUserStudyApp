@@ -105,7 +105,7 @@ function App() {
       id = split[1].substring(13, 37);
     }
     else {
-      id = prompt("Please enter your prilific ID below:")
+      id = prompt("Please enter your name below:")
     }
     setProlificId(id);
   }
