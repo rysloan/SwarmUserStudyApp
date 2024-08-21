@@ -104,6 +104,9 @@ function App() {
     if (split.length > 1) {
       id = split[1].substring(13, 37);
     }
+    else {
+      id = prompt("Please enter your prilific ID below:")
+    }
     setProlificId(id);
   }
 
