@@ -165,8 +165,11 @@ function App() {
         Welcome to the Swarm Behavior Selector
       </h1>
       <h3>
-        Below are 3 examples of robot swarms working together. Between the 3 which one stands out to you the most?
+        {start ? "Click the start button below to begin the study" : "Below are 3 examples of robot swarms working together. Between the 3 which behavior is the most different from the other two? Select the video that corrresponds with your answer and then click “Next” If all behaviors are different or all behaviors are the same, click next without selecting a behavior."}
       </h3>
+      <h4>
+        Answered: {queryCount}/50
+      </h4>
       <Gif gif={firstGif} handler={setFirstGif}/>
       <Gif gif={secondGif} handler={setSecondGif}/>
       <Gif gif={thirdGif} handler={setThirdGif}/>
