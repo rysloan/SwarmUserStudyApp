@@ -107,6 +107,9 @@ function App() {
     else {
       id = prompt("Please enter your name below:")
     }
+    while (id === null) {
+      id = prompt("Please enter your name below:")
+    }
     setProlificId(id);
   }
 
