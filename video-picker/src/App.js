@@ -80,6 +80,7 @@ function App() {
           style={{border: info[1], margin: '10px 10px auto', transform: 'rotateX(90)'}}
           onClick={() => {
             if (info[1] === unpicked && !sceneSelected) {
+              console.log(firstGif[0] + " " + secondGif[0] + " " + thirdGif[0])
               setFirstGif(firstGif[0], unpicked)
               setSecondGif(secondGif[0], unpicked)
               setThirdGif(thirdGif[0], unpicked)
