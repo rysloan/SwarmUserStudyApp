@@ -80,19 +80,16 @@ function App() {
           style={{border: info[1], margin: '10px 10px auto', transform: 'rotateX(90)'}}
           onClick={() => {
             if (info[1] === unpicked) {
-              console.log(firstGif[0] + " " + secondGif[0] + " " + thirdGif[0])
               setFirstGif([firstGif[0], unpicked])
               setSecondGif([secondGif[0], unpicked])
               setThirdGif([thirdGif[0], unpicked])
               props.handler([info[0], picked])
-              setSceneSelected(true)
             }
             else if(info[1] === picked) {
               setFirstGif([firstGif[0], unpicked])
               setSecondGif([secondGif[0], unpicked])
               setThirdGif([thirdGif[0], unpicked])
               //props.handler([info[0], unpicked])
-              setSceneSelected(false)
             }
           }}
       />
@@ -105,8 +102,6 @@ function App() {
   function getProlificId() {
     const url = window.location.href;
     const split = url.split('?');
-    console.log(url);
-    console.log(split);
     let id = "testID";
     if (split.length > 1) {
       id = split[1].substring(13, 37);
@@ -130,7 +125,7 @@ function App() {
    * 
    * @returns a gif object
    */
-  function createBehaviorData(gif1, gif2, gif3, gifSelected) {
+  function createBehaviorData(gif1, gif2, gif3, gifSelected, flagged) {
     let selected = gifSelected
     let prolificid = prolificId
     fetch('/behaviordata', {
@@ -138,7 +133,7 @@ function App() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({prolificid, gif1, gif2, gif3, selected}),
+      body: JSON.stringify({prolificid, gif1, gif2, gif3, selected, flagged}),
     })
       .then(response => {
         return response.text();
@@ -150,7 +145,6 @@ function App() {
   //const storedQueryCount = parseInt(JSON.parse(localStorage.getItem("queryCount")))
   const storedQueryCount = 0
 
-  const [sceneSelected, setSceneSelected] = useState(false)
   const [start, setStart] = useState(true)
   const [firstGif, setFirstGif] = useState([])
   const [secondGif, setSecondGif] = useState([])
@@ -205,15 +199,15 @@ function App() {
 
               if (testIdealAnswer !== -1) {
                 // Save data to database
-                let goodTester = false;
-                if (selected === testIdealAnswer)
-                  goodTester = true;
+                let flagged = 0
+                if (selected !== testIdealAnswer)
+                  flagged = 1
 
                 // TODO : Need to trucate the gif to just the number and not the entire path
                 let gifNumber1 = getGifNumber(firstGif[0])
                 let gifNumber2 = getGifNumber(secondGif[0])
                 let gifNumber3 = getGifNumber(thirdGif[0])
-                createBehaviorData(gifNumber1, gifNumber2, gifNumber3, selected)
+                createBehaviorData(gifNumber1, gifNumber2, gifNumber3, selected, flagged)
                 let temp = queryCount + 1;
                 setQueryCount(temp);
                 setTestIdealAnswer(-1);
@@ -222,7 +216,7 @@ function App() {
                 let gifNumber1 = getGifNumber(firstGif[0])
                 let gifNumber2 = getGifNumber(secondGif[0])
                 let gifNumber3 = getGifNumber(thirdGif[0])
-                createBehaviorData(gifNumber1, gifNumber2, gifNumber3, selected)
+                createBehaviorData(gifNumber1, gifNumber2, gifNumber3, selected, 0)
                 let temp = queryCount + 1;
                 setQueryCount(temp);
               } 
@@ -231,7 +225,6 @@ function App() {
             if (queryCount % 15 === 0) {
               // Run the Test Query
               let temp = userTest();
-              console.log(temp[0] + " " + temp[1])
               let random = Math.floor(Math.random() * 3);
               switch(random) {
                 case 0:
@@ -262,9 +255,6 @@ function App() {
               setSecondGif([temp[1], unpicked])
               setThirdGif([temp[2], unpicked])
             }
-        
-            // Reset Scene Selected
-            setSceneSelected(false)
           }}
           style={{width: '125px', height: '50px', margin: '10px 10px auto'}}
           disabled={finished}

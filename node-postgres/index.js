@@ -28,14 +28,9 @@ app.use(function (req, res, next) {
 // instructs Node.js to bypass SSL/TLS certificate verification for outgoing HTTPS requests
 // can be risky
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-console.log("~~~~~~~~~~TESTING~~~~~~~~~~");
 
 app.get('/', (req, res) => {
   merchant_model.getBehaviorData()
-  const pid = req.query.PROLIFIC_PID;
-  const studyID = req.query.STUDY_ID;
-  const sessionID = req.query.SESSION_ID;
-  console.log(pid)
   .then(response => {
     res.status(200).send(response);
   })
