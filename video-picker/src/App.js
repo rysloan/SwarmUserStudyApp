@@ -88,8 +88,8 @@ function App() {
             }
             else if(info[1] === picked && sceneSelected) {
               setFirstGif(firstGif[0], unpicked)
-              setFirstGif(firstGif[0], unpicked)
-              setFirstGif(firstGif[0], unpicked)
+              setSecondGif(secondGif[0], unpicked)
+              setThirdGif(thirdGif[0], unpicked)
               //props.handler([info[0], unpicked])
               setSceneSelected(false)
             }
