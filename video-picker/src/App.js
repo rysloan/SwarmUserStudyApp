@@ -231,6 +231,7 @@ function App() {
             if (queryCount % 15 === 0) {
               // Run the Test Query
               let temp = userTest();
+              console.log(temp[0] + " " + temp[1])
               let random = Math.floor(Math.random() * 3);
               switch(random) {
                 case 0:
