@@ -81,16 +81,16 @@ function App() {
           onClick={() => {
             if (info[1] === unpicked && !sceneSelected) {
               console.log(firstGif[0] + " " + secondGif[0] + " " + thirdGif[0])
-              setFirstGif(firstGif[0], unpicked)
-              setSecondGif(secondGif[0], unpicked)
-              setThirdGif(thirdGif[0], unpicked)
+              setFirstGif([firstGif[0], unpicked])
+              setSecondGif([secondGif[0], unpicked])
+              setThirdGif([thirdGif[0], unpicked])
               props.handler([info[0], picked])
               setSceneSelected(true)
             }
             else if(info[1] === picked && sceneSelected) {
-              setFirstGif(firstGif[0], unpicked)
-              setSecondGif(secondGif[0], unpicked)
-              setThirdGif(thirdGif[0], unpicked)
+              setFirstGif([firstGif[0], unpicked])
+              setSecondGif([secondGif[0], unpicked])
+              setThirdGif([thirdGif[0], unpicked])
               //props.handler([info[0], unpicked])
               setSceneSelected(false)
             }
