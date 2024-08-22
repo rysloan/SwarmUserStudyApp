@@ -79,7 +79,7 @@ function App() {
           width={250} 
           style={{border: info[1], margin: '10px 10px auto', transform: 'rotateX(90)'}}
           onClick={() => {
-            if (info[1] === unpicked && !sceneSelected) {
+            if (info[1] === unpicked) {
               console.log(firstGif[0] + " " + secondGif[0] + " " + thirdGif[0])
               setFirstGif([firstGif[0], unpicked])
               setSecondGif([secondGif[0], unpicked])
@@ -87,7 +87,7 @@ function App() {
               props.handler([info[0], picked])
               setSceneSelected(true)
             }
-            else if(info[1] === picked && sceneSelected) {
+            else if(info[1] === picked) {
               setFirstGif([firstGif[0], unpicked])
               setSecondGif([secondGif[0], unpicked])
               setThirdGif([thirdGif[0], unpicked])
