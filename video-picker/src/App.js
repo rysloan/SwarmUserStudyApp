@@ -80,11 +80,17 @@ function App() {
           style={{border: info[1], margin: '10px 10px auto', transform: 'rotateX(90)'}}
           onClick={() => {
             if (info[1] === unpicked && !sceneSelected) {
+              setFirstGif(firstGif[0], unpicked)
+              setSecondGif(secondGif[0], unpicked)
+              setThirdGif(thirdGif[0], unpicked)
               props.handler([info[0], picked])
               setSceneSelected(true)
             }
             else if(info[1] === picked && sceneSelected) {
-              props.handler([info[0], unpicked])
+              setFirstGif(firstGif[0], unpicked)
+              setFirstGif(firstGif[0], unpicked)
+              setFirstGif(firstGif[0], unpicked)
+              //props.handler([info[0], unpicked])
               setSceneSelected(false)
             }
           }}
@@ -203,19 +209,19 @@ function App() {
                   goodTester = true;
 
                 // TODO : Need to trucate the gif to just the number and not the entire path
-                let gitNumber1 = getGifNumber(firstGif[0])
-                let gitNumber2 = getGifNumber(secondGif[0])
-                let gitNumber3 = getGifNumber(thirdGif[0])
-                createBehaviorData(gitNumber1, gitNumber2, gitNumber3, selected)
+                let gifNumber1 = getGifNumber(firstGif[0])
+                let gifNumber2 = getGifNumber(secondGif[0])
+                let gifNumber3 = getGifNumber(thirdGif[0])
+                createBehaviorData(gifNumber1, gifNumber2, gifNumber3, selected)
                 let temp = queryCount + 1;
                 setQueryCount(temp);
                 setTestIdealAnswer(-1);
               }
               else {
-                let gitNumber1 = getGifNumber(firstGif[0])
-                let gitNumber2 = getGifNumber(secondGif[0])
-                let gitNumber3 = getGifNumber(thirdGif[0])
-                createBehaviorData(gitNumber1, gitNumber2, gitNumber3, selected)
+                let gifNumber1 = getGifNumber(firstGif[0])
+                let gifNumber2 = getGifNumber(secondGif[0])
+                let gifNumber3 = getGifNumber(thirdGif[0])
+                createBehaviorData(gifNumber1, gifNumber2, gifNumber3, selected)
                 let temp = queryCount + 1;
                 setQueryCount(temp);
               } 
