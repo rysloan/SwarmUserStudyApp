@@ -77,7 +77,7 @@ function App() {
           alt='loading...' 
           height={250} 
           width={250} 
-          style={{border: info[1], margin: '10px 10px auto', transform: 'rotateX(90)'}}
+          style={{border: info[1], margin: '10px 10px auto'}}
           onClick={() => {
             if (info[1] === unpicked) {
               setFirstGif([firstGif[0], unpicked])
