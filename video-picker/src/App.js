@@ -143,13 +143,14 @@ function App() {
   let unpicked = "grey solid 7px"
   let picked = "green solid 7px"
   const storedQueryCount = parseInt(JSON.parse(localStorage.getItem("queryCount")))
+  const storedVal = storedQueryCount ? storedQueryCount : 0
   //const storedQueryCount = 0
 
   const [start, setStart] = useState(true)
   const [firstGif, setFirstGif] = useState([])
   const [secondGif, setSecondGif] = useState([])
   const [thirdGif, setThirdGif] = useState([])
-  const [queryCount, setQueryCount] = useState(storedQueryCount)
+  const [queryCount, setQueryCount] = useState(storedVal)
   const [finished, setFinished] = useState(false)
   const [prolificId, setProlificId] = useState();
   const [testIdealAnswer, setTestIdealAnswer] = useState(-1);
