@@ -173,7 +173,7 @@ function App() {
       <h1>
         Welcome to the Swarm Behavior Selector
       </h1>
-      <h3 style={{width: '65rem', textAlign: 'center', justifyContent: 'center', alignItems: 'center'}}>
+      <h3 style={{width: '65rem', textAlign: 'center', justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
         {start ? "Click the start button below to begin the study" : "Below are 3 examples of robot swarms working together. Between the 3 which behavior is the most different from the other two? Select the video that corrresponds with your answer and then click “Next” If all behaviors are different or all behaviors are the same, click next without selecting a behavior."}
       </h3>
       <h4>
