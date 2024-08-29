@@ -142,9 +142,10 @@ function App() {
 
   let unpicked = "grey solid 7px"
   let picked = "green solid 7px"
-  const storedQueryCount = parseInt(JSON.parse(localStorage.getItem("queryCount")))
+  //const storedQueryCount = parseInt(JSON.parse(localStorage.getItem("queryCount")))
+  
+  const storedQueryCount = 0
   const storedVal = storedQueryCount ? storedQueryCount : 0
-  //const storedQueryCount = 0
 
   const [start, setStart] = useState(true)
   const [firstGif, setFirstGif] = useState([])
@@ -157,7 +158,7 @@ function App() {
 
   useEffect(() => {
 
-    localStorage.setItem("queryCount", JSON.stringify(queryCount))
+    //localStorage.setItem("queryCount", JSON.stringify(queryCount))
 
     if (queryCount >= 50) {
       alert("You have finished the study, Thank you! Completion Code: CK53M54P")
@@ -172,7 +173,7 @@ function App() {
       <h1>
         Welcome to the Swarm Behavior Selector
       </h1>
-      <h3 style={{maxWidth: '25rem'}}>
+      <h3 style={{maxWidth: '40rem', textAlign: 'center'}}>
         {start ? "Click the start button below to begin the study" : "Below are 3 examples of robot swarms working together. Between the 3 which behavior is the most different from the other two? Select the video that corrresponds with your answer and then click “Next” If all behaviors are different or all behaviors are the same, click next without selecting a behavior."}
       </h3>
       <h4>
