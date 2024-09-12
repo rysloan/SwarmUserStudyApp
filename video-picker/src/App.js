@@ -155,6 +155,9 @@ function App() {
   const [finished, setFinished] = useState(false)
   const [prolificId, setProlificId] = useState();
   const [testIdealAnswer, setTestIdealAnswer] = useState(-1);
+  const controlQuestion1 = [tempvids[936], tempvids[981]];
+  const controlQuestion2 = [tempvids[941], tempvids[832]];
+  const controlQuestion3 = [tempvids[798], tempvids[805]];
 
   useEffect(() => {
 
@@ -221,34 +224,45 @@ function App() {
                 let gifNumber1 = getGifNumber(firstGif[0])
                 let gifNumber2 = getGifNumber(secondGif[0])
                 let gifNumber3 = getGifNumber(thirdGif[0])
-                createBehaviorData(gifNumber1, gifNumber2, gifNumber3, selected, 0)
+                createBehaviorData(gifNumber1, gifNumber2, gifNumber3, selected, -1)
                 let temp = queryCount + 1;
                 setQueryCount(temp);
               } 
             }
 
-            if (queryCount % 15 === 0) {
+            if ((queryCount+1) % 15 === 0) {
               // Run the Test Query
-              let temp = userTest();
+              //let temp = userTest();
+              let question;
+              let controlQuestionNumber = (queryCount+1) / 15;
+              if (controlQuestionNumber === 1) {
+                question = controlQuestion1
+              }
+              else if (controlQuestionNumber === 2) {
+                question = controlQuestion2
+              }
+              else {
+                question = controlQuestion3
+              }
               let random = Math.floor(Math.random() * 3);
               switch(random) {
                 case 0:
                   setTestIdealAnswer(1);
-                  setFirstGif([temp[1], unpicked])
-                  setSecondGif([temp[0], unpicked])
-                  setThirdGif([temp[0], unpicked])
+                  setFirstGif([question[1], unpicked])
+                  setSecondGif([question[0], unpicked])
+                  setThirdGif([question[0], unpicked])
                   break;
                 case 1:
                   setTestIdealAnswer(2);
-                  setFirstGif([temp[0], unpicked])
-                  setSecondGif([temp[1], unpicked])
-                  setThirdGif([temp[0], unpicked])
+                  setFirstGif([question[0], unpicked])
+                  setSecondGif([question[1], unpicked])
+                  setThirdGif([question[0], unpicked])
                   break;
                 case 2:
                   setTestIdealAnswer(3);
-                  setFirstGif([temp[0], unpicked])
-                  setSecondGif([temp[0], unpicked])
-                  setThirdGif([temp[1], unpicked])
+                  setFirstGif([question[0], unpicked])
+                  setSecondGif([question[0], unpicked])
+                  setThirdGif([question[1], unpicked])
                   break;
                 default:
               }
